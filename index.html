@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>mCommand — Bedrock Command Generator</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header class="topbar">
@@ -20,12 +20,20 @@
     <main>
       <section class="hero">
         <h2>Build a Bedrock command</h2>
-        <p>Select a command, fill in its arguments, and copy the generated command.</p>
+        <p>
+          Select a command, fill in its arguments, and copy the generated
+          command.
+        </p>
       </section>
       <section class="workspace">
         <aside class="sidebar">
           <label>COMMAND</label>
-          <input id="commandSearch" class="search" type="search" placeholder="Search commands…">
+          <input
+            id="commandSearch"
+            class="search"
+            type="search"
+            placeholder="Search commands…"
+          />
           <div id="commandList"></div>
         </aside>
         <section class="builder">
@@ -50,7 +58,9 @@
           <div class="output">
             <div class="output-head">
               <small>GENERATED COMMAND</small>
-              <button id="copyButton" class="primary" type="button" disabled>Copy</button>
+              <button id="copyButton" class="primary" type="button" disabled>
+                Copy
+              </button>
             </div>
             <pre id="outputText">Select a command</pre>
           </div>
