@@ -1,1 +1,73 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>mCommand — Bedrock Command Generator</title><link rel="stylesheet" href="style.css"></head><body><header class="topbar"><div class="brand"><div class="brand-mark">&gt;_</div><div><h1>mCommand</h1><span>Minecraft Bedrock command generator</span></div></div><div id="status">Loading syntax.json…</div></header><main><section class="hero"><h2>Build a Bedrock command</h2><p>Select a command, fill in its arguments, and copy the generated command.</p></section><section class="workspace"><aside class="sidebar"><label>COMMAND</label><input id="commandSearch" class="search" type="search" placeholder="Search commands…"><div id="commandList"></div></aside><section class="builder"><div class="builder-head"><div><small>COMMAND</small><h2 id="commandTitle">Select a command</h2></div><button id="clearButton">Clear</button></div><div id="warning" class="warning hidden"></div><div id="syntaxPicker" class="hidden"><label>SYNTAX</label><div id="syntaxOptions"></div></div><div id="argumentArea" class="arguments empty"><div class="empty-state"><h3>No command selected</h3><p>Choose a command from the list to start building.</p></div></div><div class="output"><div class="output-head"><small>GENERATED COMMAND</small><button id="copyButton" class="primary" disabled>Copy</button></div><pre id="outputText">Select a command</pre></div></section></section></main><footer><span>mCommand</span><span>•</span><span id="stats">Loading…</span></footer><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>mCommand — Bedrock Command Generator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">&gt;_</div>
+        <div>
+          <h1>mCommand</h1>
+          <span>Minecraft Bedrock command generator</span>
+        </div>
+      </div>
+      <div id="status">Loading syntax.json…</div>
+    </header>
+    <main>
+      <section class="hero">
+        <h2>Build a Bedrock command</h2>
+        <p>
+          Select a command, fill in its arguments, and copy the generated
+          command.
+        </p>
+      </section>
+      <section class="workspace">
+        <aside class="sidebar">
+          <label>COMMAND</label
+          ><input
+            id="commandSearch"
+            class="search"
+            type="search"
+            placeholder="Search commands…"
+          />
+          <div id="commandList"></div>
+        </aside>
+        <section class="builder">
+          <div class="builder-head">
+            <div>
+              <small>COMMAND</small>
+              <h2 id="commandTitle">Select a command</h2>
+            </div>
+            <button id="clearButton">Clear</button>
+          </div>
+          <div id="warning" class="warning hidden"></div>
+          <div id="syntaxPicker" class="hidden">
+            <label>SYNTAX</label>
+            <div id="syntaxOptions"></div>
+          </div>
+          <div id="argumentArea" class="arguments empty">
+            <div class="empty-state">
+              <h3>No command selected</h3>
+              <p>Choose a command from the list to start building.</p>
+            </div>
+          </div>
+          <div class="output">
+            <div class="output-head">
+              <small>GENERATED COMMAND</small
+              ><button id="copyButton" class="primary" disabled>Copy</button>
+            </div>
+            <pre id="outputText">Select a command</pre>
+          </div>
+        </section>
+      </section>
+    </main>
+    <footer>
+      <span>mCommand</span><span>•</span><span id="stats">Loading…</span>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>
