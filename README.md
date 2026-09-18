@@ -1,5 +1,5 @@
 # mCommand
-
+[![Deploy static content to Pages](https://github.com/MegaCode111REAL/mcommand/actions/workflows/static.yml/badge.svg?branch=main)](https://github.com/MegaCode111REAL/mcommand/actions/workflows/static.yml)
 A Minecraft Bedrock command generator powered by a structured `syntax.json` command database.
 
 ## GitHub Pages
