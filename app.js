@@ -1,4 +1,4 @@
-(() => {
+(() => {\n  "use strict";\n  const BASE_URL = new URL("./", window.location.href);
   "use strict";
   const S = {
     db: null,
@@ -27,7 +27,7 @@
     E.clear.onclick = clear;
     E.copy.onclick = copy;
     try {
-      const r = await fetch("syntax.json", { cache: "no-store" });
+      const r = await fetch(new URL("syntax.json", BASE_URL), { cache: "no-store" });
       if (!r.ok) throw Error("HTTP " + r.status);
       S.db = await r.json();
       S.commands = S.db.commands || {};
