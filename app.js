@@ -290,8 +290,8 @@
           : replace(o, a, "‹" + (a.name || "value") + "›");
     });
     o = o
-      .replace(/\\s{2,}/g, " ")
-      .replace(/\\[\\s*\\]/g, "")
+      .replace(/\s{2,}/g, " ")
+      .replace(/\[\s*\]/g, "")
       .trim();
     E.out.textContent = o;
     E.copy.disabled = !o || o.includes("‹");
@@ -320,9 +320,9 @@
   }
   function cleanText(x) {
     return String(x)
-      .replace(/\\[([^\\]]+)\\]\\([^)]*\\)/g, "$1")
-      .replace(/[\\*_]/g, "")
-      .replace(/\\s+/g, " ")
+      .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+      .replace(/[\*_]/g, "")
+      .replace(/\s+/g, " ")
       .trim();
   }
   async function copy() {
