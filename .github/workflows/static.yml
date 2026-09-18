@@ -2,28 +2,55 @@
 name: Deploy static content to Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
+  check:
+    name: Check code before deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install syntax checkers
+        run: |
+          npm install --no-save --no-package-lock prettier@3 eslint@9 html-validate@10
+
+      - name: Check formatting
+        run: npx prettier . --check
+
+      - name: Check JavaScript syntax
+        run: |
+          find . -type f -name "*.js" -not -path "./node_modules/*" -print0 |
+            xargs -0 -r -n1 node --check
+
+      - name: Check JSON syntax
+        run: |
+          find . -type f -name "*.json" -not -path "./node_modules/*" -print0 |
+            xargs -0 -r -n1 node -e 'const fs=require("fs"); JSON.parse(fs.readFileSync(process.argv[1],"utf8"));' 
+
+      - name: Check HTML syntax
+        run: npx html-validate "**/*.html" --exclude "node_modules/**"
+
   deploy:
+    name: Deploy to GitHub Pages
+    needs: check
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -31,13 +58,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          path: "."
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
