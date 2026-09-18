@@ -52,7 +52,7 @@ jobs:
     name: Deploy to GitHub Pages
     needs: check
     environment:
-      name: github-pages
+      name: Github Pages Deployment
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
