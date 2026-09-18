@@ -1,0 +1,45 @@
+name: Format repository
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Prettier
+        run: npm install --no-save --no-package-lock prettier@3
+
+      - name: Format supported files
+        run: npx prettier . --write
+
+      - name: Commit formatting changes
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        run: |
+          if git diff --quiet; then
+            echo "No formatting changes."
+            exit 0
+          fi
+
+          git config user.name "${GITHUB_REPOSITORY_OWNER}"
+          git config user.email "${GITHUB_REPOSITORY_OWNER}@users.noreply.github.com"
+
+          git add -A
+          git commit -m "style: automatically format repository"
+          git push
