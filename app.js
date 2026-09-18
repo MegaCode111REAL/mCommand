@@ -28,7 +28,9 @@
     E.clear.onclick = clear;
     E.copy.onclick = copy;
     try {
-      const r = await fetch(new URL("syntax.json", BASE_URL), { cache: "no-store" });
+      const r = await fetch(new URL("syntax.json", BASE_URL), {
+        cache: "no-store",
+      });
       if (!r.ok) throw Error("HTTP " + r.status);
       S.db = await r.json();
       S.commands = S.db.commands || {};
