@@ -1,5 +1,6 @@
-(() => {\n  "use strict";\n  const BASE_URL = new URL("./", window.location.href);
+(() => {
   "use strict";
+  const BASE_URL = new URL("./", window.location.href);
   const S = {
     db: null,
     commands: {},
